@@ -1,2 +1,13 @@
 # Project dependencies
 node_modules
+
+# Build files
+.cache
+dist/
+
+# Error logs
+*.log
+
+# Editor/system files
+.DS_Store
+.vscode
