@@ -1,7 +1,9 @@
 {
   "name": "react-scraper",
   "version": "0.1.0",
+  "main": "main.js",
   "dependencies": {
+    "electron": "^2.0.7",
     "react": "^16.4.2",
     "react-dom": "^16.4.2"
   },
@@ -20,6 +22,7 @@
   },
   "scripts": {
     "dev": "parcel public/index.html",
-    "build": "parcel build src/index.jsx -d public"
+    "build": "parcel build src/index.jsx -d public",
+    "start": "electron ."
   }
 }
