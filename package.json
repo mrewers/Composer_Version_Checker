@@ -4,8 +4,10 @@
   "main": "main.js",
   "dependencies": {
     "electron": "^2.0.7",
+    "prop-types": "^15.6.2",
     "react": "^16.4.2",
-    "react-dom": "^16.4.2"
+    "react-dom": "^16.4.2",
+    "react-hot-loader": "^4.3.4"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -21,8 +23,8 @@
     "parcel-bundler": "^1.9.7"
   },
   "scripts": {
-    "dev": "parcel public/index.html",
-    "build": "parcel build src/index.jsx -d public",
+    "dev": "parcel src/index.html",
+    "build": "parcel build src/index.html -d public",
     "start": "electron ."
   }
 }
