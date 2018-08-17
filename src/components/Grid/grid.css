@@ -1,0 +1,33 @@
+/* header styles */
+.grid-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.grid-header-item {
+  border: solid 1px #F1F1F1;
+  flex-basis: 33%;
+  margin: 20px 0 0;
+  padding: 10px;
+  text-align: center;
+}
+
+/* main part of grid */
+.grid-body {
+  padding: 0;
+  margin: 0;
+}
+
+.grid-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* grid items */
+.grid-row-item {
+  border: solid 1px #F1F1F1;
+  flex-basis: 33%;
+  padding: 10px;
+  margin: 0;
+  text-align: left;
+}
