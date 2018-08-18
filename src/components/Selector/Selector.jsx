@@ -1,7 +1,5 @@
 import React from 'react';
 
-import './selector.css';
-
 const Selector = () => (
   <div className="site-selector">
     <select className="site-drop-down">

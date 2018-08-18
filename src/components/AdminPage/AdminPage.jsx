@@ -1,7 +1,5 @@
 import React from 'react';
 
-import './admin.css';
-
 const AdminPage = () => (
   <div className="admin-popup" style={{ display: 'none' }}>
     <form className="admin-form" action="">
