@@ -1,16 +1,33 @@
-import React from 'react';
-import { object } from 'prop-types';
+import React, { Component } from 'react';
+import { arrayOf, shape, string } from 'prop-types';
 
 import GridRow from './GridRow';
 
-const GridContent = ({ data }) => (
-  <ul className="grid-body">
-    <GridRow data={data} />
-  </ul>
-);
+class GridContent extends Component {
+  render() {
+    const { data } = this.props;
+
+    return (
+      <ul className="grid-body">
+        {data.map(function (item) {
+          return <li key={item.name}><GridRow data={item} /></li>;
+        })}
+      </ul>
+    );
+  }
+}
 
 GridContent.propTypes = {
-  data: object
+  data: arrayOf(
+    shape({
+      name: string.isRequired,
+      version: string.isRequired,
+    }),
+  ),
+};
+
+GridContent.defaultProps = {
+  data: [{ name: 'No Plugins Avialable', version: 'None' }],
 };
 
 export default GridContent;
