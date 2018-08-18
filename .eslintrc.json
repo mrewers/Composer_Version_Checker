@@ -10,6 +10,9 @@
       "jsx": true
     }
   },
+  "rules": {
+    "max-len": [1, 120, {"ignoreComments": true}]
+  },
   "settings": {
     "import/resolver": {
       "node": {
