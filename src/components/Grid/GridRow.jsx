@@ -1,5 +1,5 @@
 import React from 'react';
-import { arrayOf, shape, string } from 'prop-types';
+import { shape, string } from 'prop-types';
 
 const GridRow = ({ data }) => (
   <div className="grid-row">
@@ -10,16 +10,14 @@ const GridRow = ({ data }) => (
 );
 
 GridRow.propTypes = {
-  data: arrayOf(
-    shape({
-      name: string.isRequired,
-      version: string.isRequired,
-    }),
-  ),
+  data: shape({
+    name: string.isRequired,
+    version: string.isRequired,
+  }),
 };
 
 GridRow.defaultProps = {
-  data: [{ name: 'No Plugins Avialable', version: 'None' }],
+  data: { name: 'No Plugins Avialable', version: 'None' },
 };
 
 export default GridRow;
