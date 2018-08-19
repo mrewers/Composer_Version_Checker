@@ -6,8 +6,8 @@
 }
 
 .grid-header-item {
-  border: solid 1px #F1F1F1;
-  background: $color-med-blue;
+  border: solid 1px $color-gray-light;
+  background: $color-blue-light;
   flex-basis: 33.33333%;
   margin: 20px 0 0;
   padding: 10px;
@@ -27,7 +27,7 @@
 
 /* grid items */
 .grid-row-item {
-  border: solid 1px #F1F1F1;
+  border: solid 1px $color-gray-light;
   flex-basis: 33.33333%;
   padding: 10px;
   margin: 0;

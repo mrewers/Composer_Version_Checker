@@ -1,11 +1,9 @@
 export function toggleAdmin() {
-  const adminMenu = document.querySelector('.admin-popup')
-  adminMenu.style.display = "flex";
+  const adminMenu = document.querySelector('.admin-popup');
+  adminMenu.style.display = 'block';
 }
 
-// const adminToggle = document.getElementById('#admin-toggle');
-
-// adminToggle.addEventListener('click', e => {
-
-
-// })
+export function hideAdmin() {
+  const adminMenu = document.querySelector('.admin-popup');
+  adminMenu.style.display = 'none';
+}
