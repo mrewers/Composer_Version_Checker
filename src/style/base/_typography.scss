@@ -1,24 +1,28 @@
-$font-header: 'Oswald-Bold', sans-serif;
-$font-sub-header: 'Montserrat-Light', sans-serif;
-$font-body: 'CooperHewitt', serif;
+@import url('https://fonts.googleapis.com/css?family=Oswald:700');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 
 @font-face {
   font-family: 'Oswald-Bold';
   src: local('Oswald-Bold'),
-       url('/assets/fonts/Oswald-Bold.ttf') format('truetype');
+       url(./assets/fonts/Oswald-Bold.ttf) format('truetype');
 }
 
 @font-face {
   font-family: 'Montserrat-Light';
   src: local('Montserrat-Light'),
-       url('/assets/fonts/Montserrat-Light.ttf') format('truetype');
+       url(./assets/fonts/Montserrat-Light.ttf) format('truetype');
 }
 
 @font-face {
   font-family: 'CooperHewitt';
   src: local('CooperHewitt'),
-       url('/assets/fonts/CooperHewitt-Book.otf') format('otf');
+       url(./assets/fonts/CooperHewitt-Book.otf) format('otf');
 }
+
+$font-header: 'Oswald', sans-serif;
+$font-sub-header: 'Montserrat', sans-serif;
+$font-body: 'Source Sans Pro', serif;
 
 h1, h2 {
   font-family: $font-header;
@@ -28,6 +32,6 @@ h3, h4, h5 {
   font-family: $font-sub-header;
 }
 
-body {
+body, p, button, select, option {
   font-family: $font-body;
 }
