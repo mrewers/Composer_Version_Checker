@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 
-import Grid from '../components/Grid/Grid';
 import GridHeader from '../components/Grid/GridHeader';
 import GridContent from '../components/Grid/GridContent';
 import Selector from '../components/Selector/Selector';
 
 import { parseVendor } from '../utils/composerParse';
-import { populateDropdown } from '../utils/siteDropdown';
+import populateDropdown from '../utils/siteDropdown';
 
 class GridContainer extends Component {
   constructor(props) {
@@ -69,7 +68,7 @@ class GridContainer extends Component {
       <main>
         <Selector value={selectedSite} callback={this.handleChange} />
         <GridHeader />
-        <GridContent data={data || Grid.defaultProps.data} />
+        <GridContent data={data} />
       </main>
     );
   }

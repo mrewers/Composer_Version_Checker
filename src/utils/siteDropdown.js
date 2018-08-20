@@ -1,6 +1,6 @@
 import testJSON from './test';
 
-export const populateDropdown = () => {
+export default function populateDropdown() {
   const dropdown = document.getElementById('site-drop-down');
   dropdown.length = 0;
 
@@ -11,9 +11,10 @@ export const populateDropdown = () => {
   dropdown.add(defaultOption);
   dropdown.selectedIndex = 0;
 
-  const sites = testJSON.sites;
+  const { sites } = testJSON;
   Object.entries(sites).forEach(([index, value]) => {
     const option = document.createElement('option');
+    option.id = `${index}_${value.name}`;
     option.text = value.name;
     option.value = value.url;
     dropdown.add(option);
