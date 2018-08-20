@@ -41,5 +41,3 @@ export const parseVendor = (array1, array2) => {
     });
   });
 };
-
-export const site = 'https://raw.githubusercontent.com/IIP-Design/YLAI/master/composer.json';
