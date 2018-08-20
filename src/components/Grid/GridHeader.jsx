@@ -5,6 +5,7 @@ const GridHeader = () => (
     <h3 className="grid-header-item">Plugin</h3>
     <h3 className="grid-header-item">Version Installed</h3>
     <h3 className="grid-header-item">Latest Version</h3>
+    <h3 className="grid-header-item">Source</h3>
   </div>
 );
 

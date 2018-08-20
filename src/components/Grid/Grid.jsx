@@ -16,14 +16,19 @@ const Grid = ({ data }) => (
 Grid.propTypes = {
   data: arrayOf(
     shape({
+      infoLink: string,
+      latest: string,
       name: string.isRequired,
+      source: string.isRequired,
       version: string.isRequired,
     }),
   ),
 };
 
 Grid.defaultProps = {
-  data: [{ name: 'No Plugins Avialable', version: 'None' }],
+  data: [{
+    infoLink: '', latest: 'Unknown', name: 'No Plugins Avialable', source: 'None', version: 'None',
+  }],
 };
 
 export default Grid;

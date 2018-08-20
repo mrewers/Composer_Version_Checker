@@ -8,7 +8,7 @@
 .grid-header-item {
   border: solid 1px $color-gray-light;
   background: $color-blue-light;
-  flex-basis: 33.33333%;
+  flex-basis: 25%;
   margin: 20px 0 0;
   padding: 10px;
   text-align: center;
@@ -28,7 +28,7 @@
 /* grid items */
 .grid-row-item {
   border: solid 1px $color-gray-light;
-  flex-basis: 33.33333%;
+  flex-basis: 25%;
   padding: 10px;
   margin: 0;
   text-align: left;

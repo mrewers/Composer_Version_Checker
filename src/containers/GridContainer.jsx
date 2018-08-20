@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import Grid from '../components/Grid/Grid';
-import { site } from '../utils/composerParse';
+import { parseVendor, site } from '../utils/composerParse';
 
 class GridContainer extends Component {
   constructor(props) {
@@ -18,9 +18,12 @@ class GridContainer extends Component {
       .then(
         (result) => {
           const dependencies = [];
+          const dependenciesClean = [];
           Object.entries(result.require).forEach(([key, value]) => dependencies.push({ name: key, version: value }));
+          parseVendor(dependencies, dependenciesClean);
+
           this.setState({
-            data: dependencies,
+            data: dependenciesClean,
           });
         },
         (error) => {
