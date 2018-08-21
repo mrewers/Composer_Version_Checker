@@ -4,7 +4,7 @@ import GridHeader from '../components/Grid/GridHeader';
 import GridContent from '../components/Grid/GridContent';
 import Selector from '../components/Selector/Selector';
 
-import { parseVendor } from '../utils/composerParse';
+import { getPackagistVersion, parseVendor } from '../utils/composerParse';
 import populateDropdown from '../utils/siteDropdown';
 
 class GridContainer extends Component {
@@ -16,6 +16,7 @@ class GridContainer extends Component {
       selectedSite: '',
     };
 
+    this.getLatestVersions = this.getLatestVersions.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -23,29 +24,42 @@ class GridContainer extends Component {
     populateDropdown();
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
     const { selectedSite } = this.state;
-    if (selectedSite) {
-      fetch(selectedSite)
-        .then(response => response.json())
-        .then(
-          (result) => {
-            const dependencies = [];
-            const dependenciesClean = [];
-            Object.entries(result.require).forEach(([key, value]) => dependencies.push({ name: key, version: value }));
-            parseVendor(dependencies, dependenciesClean);
-
-            this.setState({
-              data: dependenciesClean,
-            });
-          },
-          (error) => {
-            this.setState({
-              error,
-            });
-          },
-        );
+    if (selectedSite !== prevState.selectedSite) {
+      this.fetchData(selectedSite);
     }
+  }
+
+  getLatestVersions() {
+    const { data } = this.state;
+    console.log(data);
+
+    // if (this.source === 'wpackagist-plugin') {
+    //   latestVersion = getPackagistVersion(this.infoLink);
+    // }
+  }
+
+  fetchData(selectedSite) {
+    fetch(selectedSite)
+      .then(response => response.json())
+      .then(
+        (result) => {
+          const dependencies = [];
+          const dependenciesClean = [];
+          Object.entries(result.require).forEach(([key, value]) => dependencies.push({ name: key, version: value }));
+          parseVendor(dependencies, dependenciesClean);
+
+          this.setState({
+            data: dependenciesClean,
+          });
+        },
+        (error) => {
+          this.setState({
+            error,
+          });
+        },
+      );
   }
 
   handleChange(event) {
@@ -66,7 +80,7 @@ class GridContainer extends Component {
 
     return (
       <main>
-        <Selector value={selectedSite} callback={this.handleChange} />
+        <Selector value={selectedSite} callback={this.handleChange} getVersion={this.getLatestVersions} />
         <GridHeader />
         <GridContent data={data} />
       </main>

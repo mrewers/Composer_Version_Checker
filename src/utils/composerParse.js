@@ -8,16 +8,10 @@ function getSourceLink(source, name) {
 }
 
 export const getPackagistVersion = (url) => {
-  return fetch(url)
+  fetch(url)
     .then(response => response.json())
     .then(result => result.version)
     .catch(err => console.log(err));
-};
-
-export const getLatestVersions = (source, infoLink) => {
-  if (source === 'wpackagist-plugin') {
-    latestVersion = getPackagistVersion(infoLink);
-  }
 };
 
 export const parseVendor = (array1, array2) => {
