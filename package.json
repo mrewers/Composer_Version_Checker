@@ -1,5 +1,5 @@
 {
-  "name": "react-scraper",
+  "name": "composer-version-checker",
   "version": "0.1.0",
   "main": "main.js",
   "dependencies": {
@@ -26,6 +26,7 @@
   "scripts": {
     "dev": "parcel src/index.html",
     "build": "parcel build src/index.html --public-url ./ -d public",
+    "prebuild": "rm -rf public",
     "start": "electron ."
   }
 }
