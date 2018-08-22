@@ -1,8 +1,8 @@
 /* header styles */
 .grid-header {
+  color: $color-white;
   display: flex;
   justify-content: space-between;
-  color: $color-white;
 }
 
 .grid-header-item {

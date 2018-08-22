@@ -49,7 +49,6 @@ class GridRow extends Component {
       );
   }
 
-
   getLatestVersions() {
     const { data } = this.props;
 
