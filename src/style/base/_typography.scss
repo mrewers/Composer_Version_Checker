@@ -32,6 +32,12 @@ h3, h4, h5 {
   font-family: $font-sub-header;
 }
 
-body, p, button, select, option {
+body, p {
   font-family: $font-body;
+  font-size: 16px;
+}
+
+button, select, option {
+  font-family: $font-sub-header;
+  font-size: 14px;
 }

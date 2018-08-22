@@ -3,3 +3,11 @@
   align-items: flex-end;
   justify-content: space-between;
 }
+
+select {
+  background-color: $color-gray-light;
+  border: solid 1px $color-blue-dark;
+  border-radius: 5px;
+  color:$color-blue-dark;
+  padding: 8px;
+}
