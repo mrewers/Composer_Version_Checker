@@ -4,7 +4,7 @@ import GridHeader from '../components/Grid/GridHeader';
 import GridContent from '../components/Grid/GridContent';
 import Selector from '../components/Selector/Selector';
 
-import { getPackagistVersion, parseVendor } from '../utils/composerParse';
+import parseVendor from '../utils/composerParse';
 import populateDropdown from '../utils/siteDropdown';
 
 class GridContainer extends Component {
@@ -16,7 +16,6 @@ class GridContainer extends Component {
       selectedSite: '',
     };
 
-    this.getLatestVersions = this.getLatestVersions.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -31,14 +30,16 @@ class GridContainer extends Component {
     }
   }
 
-  getLatestVersions() {
-    const { data } = this.state;
-    console.log(data);
-
-    // if (this.source === 'wpackagist-plugin') {
-    //   latestVersion = getPackagistVersion(this.infoLink);
-    // }
-  }
+  // getSiteName() {
+  //   const name = document.getElementById('site-drop-down');
+  //   if (name) {
+  //     const text = name.options[name.selectedIndex].text;
+  //     if (text && text !== 'Select A Site') {
+  //       console.log(text);
+  //     }
+  //   }
+  //   return;
+  // }
 
   fetchData(selectedSite) {
     fetch(selectedSite)
@@ -80,7 +81,8 @@ class GridContainer extends Component {
 
     return (
       <main>
-        <Selector value={selectedSite} callback={this.handleChange} getVersion={this.getLatestVersions} />
+        <h1>WordPress Version Checker</h1>
+        <Selector value={selectedSite} callback={this.handleChange} />
         <GridHeader />
         <GridContent data={data} />
       </main>

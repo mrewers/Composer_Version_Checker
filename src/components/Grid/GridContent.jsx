@@ -21,7 +21,6 @@ GridContent.propTypes = {
   data: arrayOf(
     shape({
       infoLink: string,
-      latest: string,
       name: string.isRequired,
       source: string.isRequired,
       version: string.isRequired,
@@ -31,7 +30,7 @@ GridContent.propTypes = {
 
 GridContent.defaultProps = {
   data: [{
-    infoLink: '', latest: 'Unknown', name: 'No Plugins Avialable', source: 'None', version: 'None',
+    infoLink: '', name: 'No Plugins Avialable', source: 'None', version: 'None',
   }],
 };
 

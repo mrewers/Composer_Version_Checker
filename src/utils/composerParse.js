@@ -7,14 +7,7 @@ function getSourceLink(source, name) {
   return '';
 }
 
-export const getPackagistVersion = (url) => {
-  fetch(url)
-    .then(response => response.json())
-    .then(result => result.version)
-    .catch(err => console.log(err));
-};
-
-export const parseVendor = (array1, array2) => {
+export default function parseVendor(array1, array2) {
   array1.forEach((element) => {
     const slash = '/';
 
@@ -34,4 +27,4 @@ export const parseVendor = (array1, array2) => {
       name: packageName, version: versionValue, latest: latestVersion, source: vendorName, infoLink: sourceURL,
     });
   });
-};
+}

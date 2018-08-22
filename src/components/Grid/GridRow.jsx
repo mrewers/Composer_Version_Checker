@@ -1,21 +1,63 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { shape, string } from 'prop-types';
 
 import { prettify } from '../../utils/textTransform';
 
-const GridRow = ({ data }) => (
-  <div className="grid-row">
-    <p className="grid-row-item">{ prettify(data.name) || GridRow.defaultProps.data.name }</p>
-    <p className="grid-row-item">{ data.version || GridRow.defaultProps.data.version }</p>
-    <p className="grid-row-item">{ data.latest }</p>
-    <p className="grid-row-item">{ prettify(data.source) || GridRow.defaultProps.data.source }</p>
-  </div>
-);
+class GridRow extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      latest: 'Unknown',
+    };
+  }
+
+  componentDidMount() {
+    this.getLatestVersions();
+  }
+
+  getPackagistVersion(url) {
+    fetch(url)
+      .then(response => response.json())
+      .then(
+        (result) => {
+          const latestVersion = result.version;
+
+          this.setState({
+            latest: latestVersion,
+          });
+        },
+        (error) => {
+          console.log(`Error: ${error.message}`); // eslint-disable-line no-console
+        },
+      );
+  }
+
+  getLatestVersions() {
+    const { data } = this.props;
+
+    if (data.source === 'wpackagist-plugin') {
+      this.getPackagistVersion(data.infoLink);
+    }
+  }
+
+  render() {
+    const { data } = this.props;
+    const { latest } = this.state;
+
+    return (
+      <div className="grid-row">
+        <p className="grid-row-item">{ prettify(data.name) || GridRow.defaultProps.data.name }</p>
+        <p className="grid-row-item">{ data.version || GridRow.defaultProps.data.version }</p>
+        <p className="grid-row-item">{ latest }</p>
+        <p className="grid-row-item">{ prettify(data.source) || GridRow.defaultProps.data.source }</p>
+      </div>
+    );
+  }
+}
 
 GridRow.propTypes = {
   data: shape({
     infoLink: string,
-    latest: string,
     name: string.isRequired,
     source: string.isRequired,
     version: string.isRequired,
@@ -24,7 +66,7 @@ GridRow.propTypes = {
 
 GridRow.defaultProps = {
   data: {
-    infoLink: '', latest: 'Unknown', name: 'No Plugins Avialable', source: 'None', version: 'None',
+    infoLink: '', name: 'No Plugins Avialable', source: 'None', version: 'None',
   },
 };
 
