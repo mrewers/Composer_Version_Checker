@@ -32,10 +32,30 @@ class GridRow extends Component {
       );
   }
 
+  getWordPressVersion(url) {
+    fetch(url)
+      .then(response => response.json())
+      .then(
+        (result) => {
+          const latestVersion = result.offers[0].current;
+
+          this.setState({
+            latest: latestVersion,
+          });
+        },
+        (error) => {
+          console.log(`Error: ${error.message}`); // eslint-disable-line no-console
+        },
+      );
+  }
+
+
   getLatestVersions() {
     const { data } = this.props;
 
-    if (data.source === 'wpackagist-plugin') {
+    if (data.source === 'wordpress') {
+      this.getWordPressVersion(data.infoLink);
+    } else if (data.source === 'wpackagist-plugin') {
       this.getPackagistVersion(data.infoLink);
     }
   }

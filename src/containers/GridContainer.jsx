@@ -14,6 +14,7 @@ class GridContainer extends Component {
       data: [],
       error: null,
       selectedSite: '',
+      siteTitle: '',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -25,21 +26,22 @@ class GridContainer extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     const { selectedSite } = this.state;
-    if (selectedSite !== prevState.selectedSite) {
+    if (selectedSite && selectedSite !== prevState.selectedSite) {
       this.fetchData(selectedSite);
+      this.getSiteName();
     }
   }
 
-  // getSiteName() {
-  //   const name = document.getElementById('site-drop-down');
-  //   if (name) {
-  //     const text = name.options[name.selectedIndex].text;
-  //     if (text && text !== 'Select A Site') {
-  //       console.log(text);
-  //     }
-  //   }
-  //   return;
-  // }
+  getSiteName() {
+    const name = document.getElementById('site-drop-down');
+    const title = ` - ${name.options[name.selectedIndex].text}`;
+
+    if (title && title !== 'Select A Site') {
+      this.setState({
+        siteTitle: title,
+      });
+    }
+  }
 
   fetchData(selectedSite) {
     fetch(selectedSite)
@@ -68,7 +70,9 @@ class GridContainer extends Component {
   }
 
   render() {
-    const { data, error, selectedSite } = this.state;
+    const {
+      data, error, selectedSite, siteTitle,
+    } = this.state;
 
     if (error) {
       return (
@@ -81,7 +85,10 @@ class GridContainer extends Component {
 
     return (
       <main>
-        <h1>WordPress Version Checker</h1>
+        <h1>
+          WordPress Version Checker
+          {siteTitle}
+        </h1>
         <Selector value={selectedSite} callback={this.handleChange} />
         <GridHeader />
         <GridContent data={data} />

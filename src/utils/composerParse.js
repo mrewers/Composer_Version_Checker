@@ -1,10 +1,12 @@
 function getSourceLink(source, name) {
+  let sourceURL = '';
   if (source === 'wpackagist-plugin') {
-    const sourceURL = `https://api.wordpress.org/plugins/info/1.0/${name}.json`;
-    return sourceURL;
+    sourceURL = `https://api.wordpress.org/plugins/info/1.0/${name}.json`;
+  } else if (source === 'wordpress') {
+    sourceURL = 'https://api.wordpress.org/core/version-check/1.7/';
   }
 
-  return '';
+  return sourceURL;
 }
 
 export default function parseVendor(array1, array2) {
@@ -21,10 +23,9 @@ export default function parseVendor(array1, array2) {
     }
 
     const sourceURL = getSourceLink(vendorName, packageName);
-    const latestVersion = 'Unknown';
 
     array2.push({
-      name: packageName, version: versionValue, latest: latestVersion, source: vendorName, infoLink: sourceURL,
+      name: packageName, version: versionValue, source: vendorName, infoLink: sourceURL,
     });
   });
 }
