@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { shape, string } from 'prop-types';
 
+import compareVersions from 'compare-versions';
 import { prettify } from '../../utils/textTransform';
 
 class GridRow extends Component {
@@ -8,11 +9,21 @@ class GridRow extends Component {
     super(props);
     this.state = {
       latest: 'Unknown',
+      outDated: false,
     };
   }
 
   componentDidMount() {
     this.getLatestVersions();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { latest } = this.state;
+    const { data } = this.props;
+
+    if (latest && latest !== prevState.latest) {
+      this.compare(data.version, latest);
+    }
   }
 
   getPackagistVersion(url) {
@@ -59,15 +70,37 @@ class GridRow extends Component {
     }
   }
 
+  compare(current, latest) {
+    if (latest && latest !== 'Unknown') {
+      const comparison = compareVersions(current, latest);
+
+      if (comparison === -1) {
+        this.setState({
+          outDated: true,
+        });
+      }
+    }
+  }
+
   render() {
     const { data } = this.props;
-    const { latest } = this.state;
+    const { latest, outDated } = this.state;
 
     return (
       <div className="grid-row">
         <p className="grid-row-item">{ prettify(data.name) || GridRow.defaultProps.data.name }</p>
-        <p className="grid-row-item">{ data.version || GridRow.defaultProps.data.version }</p>
-        <p className="grid-row-item">{ latest }</p>
+        <p
+          className="grid-row-item"
+          style={{ backgroundColor: outDated ? '#e59393' : '#ffffff' }}
+        >
+          { data.version || GridRow.defaultProps.data.version }
+        </p>
+        <p
+          className="grid-row-item"
+          style={{ backgroundColor: outDated ? '#e59393' : '#ffffff' }}
+        >
+          { latest }
+        </p>
         <p className="grid-row-item">{ prettify(data.source) || GridRow.defaultProps.data.source }</p>
       </div>
     );
