@@ -8,6 +8,9 @@ dist/
 # Error logs
 *.log
 
+# Environmental Variables
+.env
+
 # Editor/system files
 .DS_Store
 .vscode
