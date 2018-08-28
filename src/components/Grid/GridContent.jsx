@@ -4,6 +4,12 @@ import { arrayOf, shape, string } from 'prop-types';
 import GridRow from './GridRow';
 
 class GridContent extends Component {
+  static defaultProps = {
+    data: [{
+      infoLink: '', name: 'No Plugins Avialable', source: 'None', version: 'None',
+    }],
+  };
+  
   render() {
     const { data } = this.props;
 
@@ -26,12 +32,6 @@ GridContent.propTypes = {
       version: string.isRequired,
     }),
   ),
-};
-
-GridContent.defaultProps = {
-  data: [{
-    infoLink: '', name: 'No Plugins Avialable', source: 'None', version: 'None',
-  }],
 };
 
 export default GridContent;

@@ -1,11 +1,10 @@
-export const spacify = (string) => {
-  return string.replace(/(\w)(-)(\w)/g, '$1 $3');
-};
+export const spacify = string => string.replace(/(\w)(-)(\w)/g, '$1 $3');
 
 export const titleCasify = (string) => {
-  return string.replace(/\w\S*/g, function(text){
+  function setCase(text) {
     return text.charAt(0).toUpperCase() + text.substr(1).toLowerCase();
-  });
+  }
+  return string.replace(/\w\S*/g, setCase);
 };
 
 export const abbrevify = (string) => {
@@ -16,6 +15,7 @@ export const abbrevify = (string) => {
     [/Gtm4wp/g, 'GTM4WP'],
     [/Iip/g, 'IIP'],
     [/Js/g, 'JS'],
+    [/Pdcrm/g, 'PDCRM'],
     [/Rss/g, 'RSS'],
     [/Seo/g, 'SEO'],
     [/Ses/g, 'SES'],
