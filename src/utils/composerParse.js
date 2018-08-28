@@ -4,6 +4,10 @@ function getSourceLink(source, name) {
     sourceURL = `https://api.wordpress.org/plugins/info/1.0/${name}.json`;
   } else if (source === 'wordpress') {
     sourceURL = 'https://api.wordpress.org/core/version-check/1.7/';
+  } else if (source === 'twig') {
+    sourceURL = `https://repo.packagist.org/p/${source}/${name}.json`
+  } else {
+    sourceURL = 'https://api.github.com/graphql';
   }
 
   return sourceURL;
