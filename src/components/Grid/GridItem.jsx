@@ -5,35 +5,16 @@ import compareVersions from 'compare-versions';
 import checkForDev from '../../utils/checkDev';
 import { prettify } from '../../utils/textTransform';
 
-class GridRow extends Component {
-  static defaultProps = {
-    data: {
-      infoLink: '', name: 'No Plugins Avialable', source: 'None', version: 'None',
-    },
-  }
-
+class GridItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
       latest: 'Unknown',
-      outDated: false,
     };
   }
 
   componentDidMount() {
     this.getLatestVersions();
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    const { latest } = this.state;
-    const { data } = this.props;
-
-    if (latest && latest !== prevState.latest) {
-      const fromBranch = checkForDev(data.version);
-      if (fromBranch === false) {
-        this.compare(data.version, latest);
-      }
-    }
   }
 
   getWordPressVersion(url) {
@@ -153,34 +134,41 @@ class GridRow extends Component {
     }
   }
 
-  compare(current, latest) {
-    if (latest && latest !== 'Unknown') {
-      const comparison = compareVersions(current, latest);
+  compare() {
+    const { latest } = this.state;
+    const { data } = this.props;
+    const { version } = data;
 
-      if (comparison === -1) {
-        this.setState({
-          outDated: true,
-        });
+    if (latest && version && latest !== 'Unknown') {
+      if (!checkForDev(version)) {
+        const comparison = compareVersions(version, latest);
+        if (comparison === -1) {
+          return ('#e59393');
+        }
+        return ('#ffffff');
       }
+      return ('#ffffff');
     }
+    return ('#ffffff');
   }
 
   render() {
     const { data } = this.props;
-    const { latest, outDated } = this.state;
+    const { latest } = this.state;
+    const background = this.compare();
 
     return (
       <div className="grid-row">
         <p className="grid-row-item">{ prettify(data.name) }</p>
         <p
           className="grid-row-item"
-          style={{ backgroundColor: outDated ? '#e59393' : '#ffffff' }}
+          style={{ backgroundColor: background }}
         >
           { data.version }
         </p>
         <p
           className="grid-row-item"
-          style={{ backgroundColor: outDated ? '#e59393' : '#ffffff' }}
+          style={{ backgroundColor: background }}
         >
           { latest }
         </p>
@@ -190,13 +178,19 @@ class GridRow extends Component {
   }
 }
 
-GridRow.propTypes = {
+GridItem.propTypes = {
   data: shape({
     infoLink: string,
-    name: string.isRequired,
-    source: string.isRequired,
-    version: string.isRequired,
+    name: string,
+    source: string,
+    version: string,
   }),
 };
 
-export default GridRow;
+GridItem.defaultProps = {
+  data: {
+    infoLink: '', name: 'No Plugins Avialable', source: 'None', version: 'None',
+  },
+};
+
+export default GridItem;

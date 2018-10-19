@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import GridHeader from '../components/Grid/GridHeader';
-import GridContent from '../components/Grid/GridContent';
+import GridList from '../components/Grid/GridList';
 import Selector from '../components/Selector/Selector';
 
 import parseVendor from '../utils/composerParse';
@@ -91,7 +91,9 @@ class GridContainer extends Component {
         </h1>
         <Selector value={selectedSite} callback={this.handleChange} />
         <GridHeader />
-        <GridContent data={data} />
+        <ul className="grid-body">
+          <GridList data={data} />
+        </ul>
       </main>
     );
   }
