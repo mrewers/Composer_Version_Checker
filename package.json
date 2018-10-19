@@ -4,7 +4,7 @@
   "main": "main.js",
   "dependencies": {
     "compare-versions": "^3.3.1",
-    "electron": "^2.0.7",
+    "electron": "^2.0.12",
     "prop-types": "^15.6.2",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
